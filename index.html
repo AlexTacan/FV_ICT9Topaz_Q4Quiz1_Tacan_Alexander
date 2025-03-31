@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<title>ICTQuiz1</title>
+	<style>
+		kbd{
+			font-family: 'Times New Roman';
+		}
+		h1{
+			font-family: 'Times New Roman';
+		}
+		p{
+			font-family: 'Times New Roman';
+		}
+		body{
+			background-color: darkkhaki;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<h1>BMI Calculator</h1>
+		<p>Body Mass Index (BMI) categories are classifications used to assess body weight status based on<br>an individual's height and weight measured in kilogram per square meter (kg/m²)</p>
+
+		<details onclick="message1()">
+		<summary>
+			<i>Instructions</i>
+			<br>
+			<i id="message"></i>
+		</summary>
+	</details>
+	<br>
+
+	<input type="number" class="form-control" id="weightinput" style="width: 600px; text-align: center; font-family: 'Times New Roman';" placeholder="weight in kilograms">
+	<kbd id="weightkbd">kilogram</kbd>
+	<br><br>
+
+	<input type="number" class="form-control" id="heightinput" style="width: 600px; text-align: center; font-family: 'Times New Roman';" placeholder="height in meters">
+	<kbd id="heightkbd">meter²</kbd>
+	<br><br>
+
+	<button type="Submit" class="btn btn-warning" onclick="BMIcalc()" style="font-size: 25px; font-family: 'Times New Roman';">Calculate BMI</button>
+	<br>
+	<br>
+	<kbd id="BMIcalculated" style="font-size: 25px;">Output</kbd>
+
+<script>
+	function message1(){
+		document.getElementById("message").innerHTML = "Input your weight and height and press the button to calculate your BMI.";
+	}
+
+	function BMIcalc(){
+		var weight = document.getElementById("weightinput").value;
+		var height = document.getElementById("heightinput").value;
+		var heightsquared = Math.pow(Number(height), 2);
+		var BMI = Number(weight) / heightsquared;
+
+		document.getElementById("weightkbd").innerHTML = weight;
+		document.getElementById("heightkbd").innerHTML = heightsquared;
+
+		if(BMI < 18.5){
+			document.getElementById("BMIcalculated").innerHTML = "Your BMI is " + BMI.toFixed(2) + ", you are underweight.";
+		}else if(BMI >= 18.5 && BMI <= 24.9){
+			document.getElementById("BMIcalculated").innerHTML = "Your BMI is " + BMI.toFixed(2) + ", you have normal weight.";
+		}else if(BMI >= 25 && BMI <= 29.9){
+			document.getElementById("BMIcalculated").innerHTML = "Your BMI is " + BMI.toFixed(2) + ", you are overweight.";
+		}else if(BMI >= 30){
+			document.getElementById("BMIcalculated").innerHTML = "Your BMI is " + BMI.toFixed(2) + ", you are obese.";
+		}
+	}
+</script>
+</body>
+</html>
